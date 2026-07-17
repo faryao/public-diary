@@ -1,0 +1,49 @@
+---
+layout: default
+---
+
+<section class="hero" aria-labelledby="diary-title">
+  <p class="eyebrow">A PUBLIC DIARY</p>
+  <h1 id="diary-title">Notes from<br><em>an ordinary life.</em></h1>
+  <p class="intro">Small observations, honest reflections, and the moments I want to remember.</p>
+  <a class="write-button" id="write-button" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/new/main/_posts" target="_blank" rel="noreferrer">
+    <span>Write today’s entry</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</section>
+
+<section class="entries" aria-labelledby="entries-title">
+  <header class="section-heading">
+    <h2 id="entries-title">Recent entries</h2>
+    <span>{{ site.posts | size }} {% if site.posts.size == 1 %}entry{% else %}entries{% endif %}</span>
+  </header>
+
+  {% if site.posts.size > 0 %}
+    <div class="entry-list">
+      {% for post in site.posts %}
+      <article class="entry-card">
+        <time datetime="{{ post.date | date_to_xmlschema }}">
+          <span>{{ post.date | date: "%d" }}</span>
+          {{ post.date | date: "%b %Y" }}
+        </time>
+        <div class="entry-body">
+          <div class="entry-topline">
+            <p>{{ post.mood | default: "A diary entry" }}</p>
+            <a class="edit-link" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ post.path }}" target="_blank" rel="noreferrer" aria-label="Edit {{ post.title }} on GitHub">Edit</a>
+          </div>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <div class="excerpt">{{ post.excerpt }}</div>
+          <a class="read-link" href="{{ post.url | relative_url }}">Read entry <span>→</span></a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <span>✦</span>
+      <h3>Your first page is waiting.</h3>
+      <p>Use the button above to write your first entry on GitHub.</p>
+    </div>
+  {% endif %}
+</section>
+

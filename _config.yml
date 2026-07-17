@@ -1,0 +1,15 @@
+title: Open Pages
+description: A small public diary, written one day at a time.
+author: Your Name
+timezone: Europe/Dublin
+future: true
+permalink: /entries/:year/:month/:day/:title/
+
+# Change this after creating your GitHub repository.
+github_username: faryao
+repository_name: public-diary
+baseurl: /public-diary
+
+exclude:
+  - README.md
+  - LICENSE
