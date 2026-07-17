@@ -30,9 +30,15 @@ nav a:hover { color: var(--ink); }
 .section-heading { display: flex; align-items: end; justify-content: space-between; padding-bottom: 20px; border-bottom: 1px solid var(--ink); }
 .section-heading h2 { margin: 0; font: 400 36px "Newsreader", serif; }
 .section-heading span { color: var(--muted); font-size: 12px; }
-.entry-card { display: grid; grid-template-columns: 135px 1fr; gap: 40px; padding: 48px 0; border-bottom: 1px solid var(--line); }
-.entry-card time { color: var(--muted); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
-.entry-card time span { display: block; color: var(--ink); font: 400 42px/1 "Newsreader", serif; letter-spacing: 0; }
+.timeline { position: relative; padding-top: 34px; }
+.timeline::before { content: ""; position: absolute; top: 0; bottom: 0; left: 151px; width: 1px; background: linear-gradient(var(--red), var(--line) 18%, var(--line) 86%, transparent); }
+.timeline-entry { display: grid; grid-template-columns: 152px 1fr; gap: 46px; position: relative; padding: 42px 0 6px; }
+.timeline-date { position: relative; padding-right: 28px; text-align: right; }
+.timeline-date time { color: var(--muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.timeline-date time span { display: block; color: var(--ink); font: 400 42px/1 "Newsreader", serif; letter-spacing: 0; }
+.timeline-date i { position: absolute; z-index: 1; top: 13px; right: -7px; width: 14px; height: 14px; background: var(--paper); border: 2px solid var(--red); border-radius: 50%; box-shadow: 0 0 0 7px var(--paper); }
+.timeline-entry:first-child .timeline-date i { background: var(--red); }
+.timeline-entry .entry-body { padding: 0 0 48px; border-bottom: 1px solid var(--line); }
 .entry-topline { display: flex; justify-content: space-between; }
 .entry-topline p { margin: 0; color: var(--red); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
 .edit-link { color: var(--muted); font-size: 11px; text-underline-offset: 3px; }
@@ -66,8 +72,11 @@ footer { display: flex; justify-content: space-between; padding: 32px 0; color: 
   .hero { min-height: 520px; padding: 70px 12px; }
   .hero h1 { font-size: clamp(55px, 18vw, 82px); }
   .entries { padding: 68px 12px 90px; }
-  .entry-card { grid-template-columns: 58px 1fr; gap: 18px; padding: 38px 0; }
-  .entry-card time span { font-size: 32px; }
+  .timeline::before { left: 65px; }
+  .timeline-entry { grid-template-columns: 66px 1fr; gap: 22px; padding: 32px 0 0; }
+  .timeline-date { padding-right: 16px; }
+  .timeline-date time span { font-size: 30px; }
+  .timeline-date i { top: 9px; right: -7px; }
   .entry-body h3 { font-size: 32px; }
   .post { padding: 48px 8px 90px; }
   .post header { padding: 60px 0 42px; }
@@ -76,4 +85,3 @@ footer { display: flex; justify-content: space-between; padding: 32px 0; color: 
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; transition: none !important; }
 }
-

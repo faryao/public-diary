@@ -7,10 +7,16 @@
 
   const now = new Date();
   const date = [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'), String(now.getDate()).padStart(2, '0')].join('-');
-  const template = `---\nlayout: post\ntitle: "Today’s title"\ndate: ${date}\nmood: "A short thought"\n---\n\nStart writing here.\n`;
-  const url = new URL(button.href);
-  url.searchParams.set('filename', `${date}-my-entry.md`);
+  const todayEntry = document.querySelector(`[data-entry-date="${date}"]`);
+  if (todayEntry) {
+    button.href = todayEntry.dataset.editUrl;
+    button.querySelector('span').textContent = 'Continue today’s diary';
+    return;
+  }
+
+  const template = `---\nlayout: post\ntitle: "${date}"\ndate: ${date}\nmood: "Today in a few words"\n---\n\n## Today\n\nWrite what happened today.\n\n## A moment to remember\n\nWhat would you like to keep?\n`;
+  const url = new URL(button.dataset.newUrl);
+  url.searchParams.set('filename', `${date}-diary.md`);
   url.searchParams.set('value', template);
   button.href = url.toString();
 })();
-

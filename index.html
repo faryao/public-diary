@@ -6,8 +6,8 @@ layout: default
   <p class="eyebrow">A PUBLIC DIARY</p>
   <h1 id="diary-title">Notes from<br><em>an ordinary life.</em></h1>
   <p class="intro">Small observations, honest reflections, and the moments I want to remember.</p>
-  <a class="write-button" id="write-button" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/new/main/_posts" target="_blank" rel="noreferrer">
-    <span>Write today’s entry</span>
+  <a class="write-button" id="write-button" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/new/main/_posts" data-new-url="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/new/main/_posts" target="_blank" rel="noreferrer">
+    <span>Open today’s diary</span>
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 </section>
@@ -19,13 +19,16 @@ layout: default
   </header>
 
   {% if site.posts.size > 0 %}
-    <div class="entry-list">
+    <div class="timeline" id="timeline">
       {% for post in site.posts %}
-      <article class="entry-card">
-        <time datetime="{{ post.date | date_to_xmlschema }}">
-          <span>{{ post.date | date: "%d" }}</span>
-          {{ post.date | date: "%b %Y" }}
-        </time>
+      <article class="timeline-entry" data-entry-date="{{ post.date | date: '%Y-%m-%d' }}" data-edit-url="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ post.path }}">
+        <div class="timeline-date">
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            <span>{{ post.date | date: "%d" }}</span>
+            {{ post.date | date: "%b %Y" }}
+          </time>
+          <i aria-hidden="true"></i>
+        </div>
         <div class="entry-body">
           <div class="entry-topline">
             <p>{{ post.mood | default: "A diary entry" }}</p>
@@ -46,4 +49,3 @@ layout: default
     </div>
   {% endif %}
 </section>
-

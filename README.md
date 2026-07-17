@@ -1,6 +1,6 @@
 # Open Pages — public diary
 
-A minimal public diary for GitHub Pages. Write entries in GitHub's web editor, commit them, and they publish automatically.
+A minimal one-diary-per-day journal for GitHub Pages. Write entries in GitHub's web editor, commit them, and they publish automatically on a vertical timeline.
 
 ## Publish it
 
@@ -12,7 +12,7 @@ A minimal public diary for GitHub Pages. Write entries in GitHub's web editor, c
 
 ## Write and publish
 
-On the diary, click **Write today's entry**. GitHub opens a ready-made Markdown file. Change the title, mood, and text, then click **Commit changes**. GitHub Pages rebuilds the diary, usually within a minute or two.
+On the diary, click **Open today's diary**. If today's page exists, GitHub opens it for editing; otherwise it creates one from a ready-made template. Click **Commit changes** to publish. This keeps exactly one diary file for each day.
 
 File names must start with a date: `YYYY-MM-DD-short-title.md`. Keep the metadata between the two `---` lines.
 
