@@ -1,4 +1,4 @@
-# Open Pages — public diary
+# Yuan’s Diary
 
 A calendar-first, one-diary-per-day journal for GitHub Pages. Every day has one place on the Tiffany-green vertical timeline, whether it was written or missed. Diaries are identified by date and do not use titles.
 

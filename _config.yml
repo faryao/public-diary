@@ -1,6 +1,6 @@
-title: Open Pages
+title: "Yuan’s Diary"
 description: A small public diary, written one day at a time.
-author: Your Name
+author: Yuan Yao
 timezone: Europe/Dublin
 future: true
 permalink: /entries/:year/:month/:day/:title/
