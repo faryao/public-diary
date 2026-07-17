@@ -2,15 +2,17 @@
 layout: default
 ---
 <article class="post">
-  <a class="back-link" href="{{ '/' | relative_url }}">← All entries</a>
+  <a class="back-link" href="{{ '/' | relative_url }}">← Back to the timeline</a>
   <header>
-    <p class="eyebrow">{{ page.mood | default: "DIARY ENTRY" }}</p>
-    <h1>{{ page.title }}</h1>
-    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%A, %B %-d, %Y" }}</time>
+    <p class="eyebrow">{{ page.mood | default: "DAILY DIARY" }}</p>
+    <div class="post-date" aria-hidden="true">
+      <strong>{{ page.date | date: "%d" }}</strong>
+      <span>{{ page.date | date: "%A" }}<br>{{ page.date | date: "%B %Y" }}</span>
+    </div>
+    <time class="sr-only" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%A, %B %-d, %Y" }}</time>
   </header>
   <div class="post-content">{{ content }}</div>
   <div class="post-actions">
-    <a class="write-button" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ page.path }}" target="_blank" rel="noreferrer">Edit this entry on GitHub <span>↗</span></a>
+    <a class="write-button" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ page.path }}" target="_blank" rel="noreferrer">Edit this diary on GitHub <span>↗</span></a>
   </div>
 </article>
-

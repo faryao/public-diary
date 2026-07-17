@@ -11,10 +11,15 @@
   const today = new Date();
   const todayKey = toDateKey(today);
 
+  const heroDay = document.getElementById('hero-day');
+  const heroWeekday = document.getElementById('hero-weekday');
+  const heroMonth = document.getElementById('hero-month');
+  if (heroDay) heroDay.textContent = String(today.getDate()).padStart(2, '0');
+  if (heroWeekday) heroWeekday.textContent = new Intl.DateTimeFormat('en', { weekday: 'long' }).format(today).toUpperCase();
+  if (heroMonth) heroMonth.textContent = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' }).format(today);
+
   function newDiaryUrl(dateKey) {
-    const day = fromDateKey(dateKey);
-    const title = new Intl.DateTimeFormat('en', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).format(day);
-    const template = `---\nlayout: post\ntitle: "${title}"\ndate: ${dateKey}\nmood: "Today in a few words"\n---\n\n## Today\n\nWrite what happened today.\n\n## A moment to remember\n\nWhat would you like to keep?\n`;
+    const template = `---\nlayout: post\ndate: ${dateKey}\nmood: "Today in a few words"\n---\n\nWrite what happened today.\n\nWhat is one moment you want to remember?\n`;
     const url = new URL(button.dataset.newUrl);
     url.searchParams.set('filename', `${dateKey}-diary.md`);
     url.searchParams.set('value', template);
@@ -53,7 +58,7 @@
       <div class="diary-card empty-day">
         <div>
           <p class="empty-label">No diary for this day</p>
-          <h3>An unwritten page</h3>
+          <p class="empty-message">Nothing was written.</p>
         </div>
         <a href="${newDiaryUrl(dateKey)}" target="_blank" rel="noreferrer">Write this day on GitHub <span>↗</span></a>
       </div>`;

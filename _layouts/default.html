@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace }}">
-    <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+    <title>{% if page.layout == 'post' %}{{ page.date | date: '%B %-d, %Y' }} — {% elsif page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
         <span>O</span>{{ site.title }}
       </a>
       <nav aria-label="Main navigation">
-        <a href="{{ '/' | relative_url }}">Journal</a>
+        <a href="{{ '/' | relative_url }}">Timeline</a>
         <a href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}" target="_blank" rel="noreferrer">GitHub ↗</a>
       </nav>
     </header>
@@ -30,4 +30,3 @@
     <script src="{{ '/assets/app.js' | relative_url }}"></script>
   </body>
 </html>
-
