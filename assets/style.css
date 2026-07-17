@@ -22,32 +22,16 @@ a { color: inherit; }
 nav { display: flex; gap: 28px; }
 nav a { color: var(--muted); font-size: 13px; text-decoration: none; transition: color .2s; }
 nav a:hover { color: var(--tiffany-deep); }
-.hero { position: relative; min-height: 600px; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr); align-items: center; gap: 6vw; overflow: hidden; padding: 88px 7vw 80px; border-bottom: 1px solid var(--line); }
-.hero::after { content: ""; position: absolute; top: 9%; right: -5%; width: 330px; height: 330px; border: 1px solid rgba(7,143,133,.14); border-radius: 50%; box-shadow: 0 0 0 58px rgba(129,216,208,.05), 0 0 0 118px rgba(129,216,208,.035); pointer-events: none; }
-.hero-copy { position: relative; z-index: 1; }
 .eyebrow { margin: 0 0 22px; color: var(--tiffany-deep); font-size: 11px; font-weight: 600; letter-spacing: .18em; }
-.hero h1 { margin: 0; max-width: 780px; font: 400 clamp(62px, 9vw, 116px)/.86 "Newsreader", serif; letter-spacing: -.045em; }
-.hero h1 em { color: var(--tiffany-deep); font-weight: 400; }
-.intro { max-width: 500px; margin: 34px 0; color: var(--muted); font: 400 19px/1.6 "Newsreader", serif; }
 .write-button { display: inline-flex; align-items: center; gap: 34px; padding: 16px 20px; background: var(--tiffany-dark); color: #fff; border-radius: 3px; box-shadow: 0 10px 28px rgba(7,94,88,.18); font-size: 13px; text-decoration: none; transition: transform .2s, background .2s, box-shadow .2s; }
 .write-button:hover { transform: translateY(-2px); background: var(--tiffany-deep); box-shadow: 0 14px 34px rgba(7,94,88,.24); }
 .write-button svg { width: 19px; fill: none; stroke: currentColor; stroke-width: 1.5; }
-.hero-calendar { position: relative; z-index: 1; display: grid; place-items: center; min-height: 330px; }
-.calendar-ring { position: absolute; width: 285px; height: 285px; border: 1px solid rgba(7,143,133,.2); border-radius: 50%; }
-.calendar-ring::before, .calendar-ring::after { content: ""; position: absolute; background: var(--tiffany-deep); border-radius: 50%; }
-.calendar-ring::before { top: 25px; right: 34px; width: 7px; height: 7px; box-shadow: 0 0 0 6px rgba(129,216,208,.25); }
-.calendar-ring::after { bottom: 41px; left: 15px; width: 4px; height: 4px; }
-.calendar-sheet { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 190px; height: 225px; background: rgba(255,255,255,.76); border: 1px solid rgba(7,143,133,.22); border-radius: 100px 100px 10px 10px; box-shadow: var(--shadow); backdrop-filter: blur(8px); }
-.calendar-sheet::before { content: ""; position: absolute; top: 43px; left: 28px; right: 28px; height: 1px; background: var(--line); }
-.calendar-sheet small { margin-bottom: 16px; color: var(--tiffany-deep); font-size: 9px; font-weight: 600; letter-spacing: .18em; }
-.calendar-sheet strong { font: 400 82px/.8 "Newsreader", serif; letter-spacing: -.06em; }
-.calendar-sheet span { margin-top: 15px; color: var(--muted); font: italic 400 15px "Newsreader", serif; }
-.hero-calendar > p { position: absolute; right: -5px; bottom: 10px; margin: 0; color: var(--tiffany-dark); font: italic 400 14px/1.35 "Newsreader", serif; transform: rotate(-7deg); }
-.entries { padding: 96px 7vw 130px; }
+.entries { padding: 72px 7vw 130px; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; padding-bottom: 24px; border-bottom: 1px solid var(--ink); }
-.section-heading .eyebrow { margin-bottom: 8px; }
-.section-heading h2 { margin: 0; font: 400 36px "Newsreader", serif; }
-.section-heading span { color: var(--muted); font-size: 12px; }
+.section-heading h1 { margin: 0; font: 400 46px "Newsreader", serif; }
+.section-controls { display: flex; align-items: center; gap: 26px; }
+.section-controls > span { color: var(--muted); font-size: 12px; }
+.section-heading .write-button { gap: 22px; padding: 13px 17px; }
 .timeline { position: relative; padding-top: 26px; }
 .timeline::before { content: ""; position: absolute; top: 0; bottom: 10px; left: 168px; width: 2px; background: linear-gradient(var(--tiffany-deep) 0 54px, rgba(7,143,133,.18) 54px calc(100% - 30px), transparent); }
 .timeline-day { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 48px; position: relative; padding: 30px 0 34px; }
@@ -96,13 +80,12 @@ footer { display: flex; justify-content: space-between; padding: 32px 0; color: 
   .site-header, main, footer { width: min(100% - 28px, 1120px); }
   .site-header { height: 72px; }
   nav a:first-child { display: none; }
-  .hero { min-height: 570px; grid-template-columns: 1fr; padding: 70px 12px; }
-  .hero-calendar { position: absolute; right: -74px; bottom: -24px; opacity: .26; transform: scale(.72); }
-  .hero-calendar > p { display: none; }
-  .hero h1 { font-size: clamp(55px, 18vw, 82px); }
-  .entries { padding: 68px 12px 90px; }
-  .section-heading { align-items: start; gap: 18px; }
-  .section-heading span { max-width: 110px; padding-top: 5px; text-align: right; line-height: 1.5; }
+  .entries { padding: 48px 12px 90px; }
+  .section-heading { align-items: stretch; flex-direction: column; gap: 22px; }
+  .section-heading h1 { font-size: 40px; }
+  .section-controls { justify-content: space-between; gap: 16px; }
+  .section-controls > span { max-width: 105px; line-height: 1.5; }
+  .section-heading .write-button { gap: 14px; padding: 12px 14px; }
   .timeline::before { left: 78px; }
   .timeline-day { grid-template-columns: 80px minmax(0, 1fr); gap: 22px; padding: 26px 0 20px; }
   .day-marker { padding-right: 14px; }
