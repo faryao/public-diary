@@ -3,49 +3,47 @@ layout: default
 ---
 
 <section class="hero" aria-labelledby="diary-title">
-  <p class="eyebrow">A PUBLIC DIARY</p>
-  <h1 id="diary-title">Notes from<br><em>an ordinary life.</em></h1>
-  <p class="intro">Small observations, honest reflections, and the moments I want to remember.</p>
+  <p class="eyebrow">ONE DAY · ONE DIARY</p>
+  <h1 id="diary-title">A life, kept<br><em>day by day.</em></h1>
+  <p class="intro">One page for every calendar day. Written in public, remembered in order.</p>
   <a class="write-button" id="write-button" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/new/main/_posts" data-new-url="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/new/main/_posts" target="_blank" rel="noreferrer">
     <span>Open today’s diary</span>
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 </section>
 
-<section class="entries" aria-labelledby="entries-title">
+<section class="entries" aria-labelledby="timeline-title">
   <header class="section-heading">
-    <h2 id="entries-title">Recent entries</h2>
-    <span>{{ site.posts | size }} {% if site.posts.size == 1 %}entry{% else %}entries{% endif %}</span>
+    <div>
+      <p class="eyebrow">THE DAILY RECORD</p>
+      <h2 id="timeline-title">Timeline</h2>
+    </div>
+    <span id="timeline-summary" aria-live="polite">Loading days…</span>
   </header>
 
-  {% if site.posts.size > 0 %}
-    <div class="timeline" id="timeline">
-      {% for post in site.posts %}
-      <article class="timeline-entry" data-entry-date="{{ post.date | date: '%Y-%m-%d' }}" data-edit-url="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ post.path }}">
-        <div class="timeline-date">
-          <time datetime="{{ post.date | date_to_xmlschema }}">
-            <span>{{ post.date | date: "%d" }}</span>
-            {{ post.date | date: "%b %Y" }}
-          </time>
-          <i aria-hidden="true"></i>
-        </div>
+  <div class="timeline" id="timeline">
+    {% for post in site.posts %}
+    <article class="timeline-day is-written" data-diary-date="{{ post.date | date: '%Y-%m-%d' }}" data-edit-url="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ post.path }}">
+      <div class="day-marker">
+        <time datetime="{{ post.date | date: '%Y-%m-%d' }}">
+          <span class="weekday">{{ post.date | date: "%A" }}</span>
+          <strong>{{ post.date | date: "%d" }}</strong>
+          <span>{{ post.date | date: "%b %Y" }}</span>
+        </time>
+        <i class="timeline-node" aria-hidden="true"><span>✓</span></i>
+      </div>
+      <div class="diary-card">
         <div class="entry-body">
           <div class="entry-topline">
-            <p>{{ post.mood | default: "A diary entry" }}</p>
-            <a class="edit-link" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ post.path }}" target="_blank" rel="noreferrer" aria-label="Edit {{ post.title }} on GitHub">Edit</a>
+            <p><span class="status-dot"></span>{{ post.mood | default: "Diary kept" }}</p>
+            <a class="edit-link" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ post.path }}" target="_blank" rel="noreferrer" aria-label="Edit diary for {{ post.date | date: '%B %-d, %Y' }} on GitHub">Edit on GitHub ↗</a>
           </div>
           <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
           <div class="excerpt">{{ post.excerpt }}</div>
-          <a class="read-link" href="{{ post.url | relative_url }}">Read entry <span>→</span></a>
+          <a class="read-link" href="{{ post.url | relative_url }}">Read this day <span>→</span></a>
         </div>
-      </article>
-      {% endfor %}
-    </div>
-  {% else %}
-    <div class="empty-state">
-      <span>✦</span>
-      <h3>Your first page is waiting.</h3>
-      <p>Use the button above to write your first entry on GitHub.</p>
-    </div>
-  {% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
 </section>
