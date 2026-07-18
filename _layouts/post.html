@@ -4,7 +4,6 @@ layout: default
 <article class="post">
   <a class="back-link" href="{{ '/' | relative_url }}">← Back to the timeline</a>
   <header>
-    <p class="eyebrow">{{ page.mood | default: "DAILY DIARY" }}</p>
     <div class="post-date" aria-hidden="true">
       <strong>{{ page.date | date: "%d" }}</strong>
       <span>{{ page.date | date: "%A" }}<br>{{ page.date | date: "%B %Y" }}</span>

@@ -22,7 +22,6 @@ a { color: inherit; }
 nav { display: flex; gap: 28px; }
 nav a { color: var(--muted); font-size: 13px; text-decoration: none; transition: color .2s; }
 nav a:hover { color: var(--tiffany-deep); }
-.eyebrow { margin: 0 0 22px; color: var(--tiffany-deep); font-size: 11px; font-weight: 600; letter-spacing: .18em; }
 .write-button { display: inline-flex; align-items: center; gap: 34px; padding: 16px 20px; background: var(--tiffany-dark); color: #fff; border-radius: 3px; box-shadow: 0 10px 28px rgba(7,94,88,.18); font-size: 13px; text-decoration: none; transition: transform .2s, background .2s, box-shadow .2s; }
 .write-button:hover { transform: translateY(-2px); background: var(--tiffany-deep); box-shadow: 0 14px 34px rgba(7,94,88,.24); }
 .write-button svg { width: 19px; fill: none; stroke: currentColor; stroke-width: 1.5; }
@@ -47,9 +46,7 @@ nav a:hover { color: var(--tiffany-deep); }
 .diary-card { position: relative; min-width: 0; overflow: hidden; padding: 30px 34px 34px; background: rgba(255,255,255,.64); border: 1px solid rgba(7,143,133,.16); border-radius: 4px 28px 4px 4px; box-shadow: 0 13px 35px rgba(7,94,88,.05); backdrop-filter: blur(6px); transition: transform .2s, border-color .2s, background .2s, box-shadow .2s; }
 .is-written .diary-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: linear-gradient(var(--tiffany), var(--tiffany-deep)); }
 .is-written .diary-card:hover { transform: translateY(-3px); background: rgba(255,255,255,.86); border-color: rgba(7,143,133,.32); box-shadow: var(--shadow); }
-.entry-topline { display: flex; justify-content: space-between; }
-.entry-topline p { display: flex; align-items: center; gap: 7px; margin: 0; color: var(--tiffany-deep); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
-.status-dot { width: 5px; height: 5px; background: var(--tiffany-deep); border-radius: 50%; box-shadow: 0 0 0 4px rgba(129,216,208,.22); }
+.entry-topline { display: flex; justify-content: flex-end; }
 .edit-link { color: var(--muted); font-size: 11px; text-underline-offset: 3px; }
 .excerpt { max-width: 680px; margin-top: 24px; color: var(--ink); font: 400 20px/1.65 "Newsreader", serif; }
 .excerpt p { margin: 0; }

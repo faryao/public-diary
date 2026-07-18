@@ -28,7 +28,6 @@ layout: default
       <div class="diary-card">
         <div class="entry-body">
           <div class="entry-topline">
-            <p><span class="status-dot"></span>{{ post.mood | default: "Diary kept" }}</p>
             <a class="edit-link" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ post.path }}" target="_blank" rel="noreferrer" aria-label="Edit diary for {{ post.date | date: '%B %-d, %Y' }} on GitHub">Edit on GitHub ↗</a>
           </div>
           <div class="excerpt">{{ post.excerpt }}</div>

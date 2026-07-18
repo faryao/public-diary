@@ -12,7 +12,7 @@
   const todayKey = toDateKey(today);
 
   function newDiaryUrl(dateKey) {
-    const template = `---\nlayout: post\ndate: ${dateKey}\nmood: "Today in a few words"\n---\n\nWrite what happened today.\n\nWhat is one moment you want to remember?\n`;
+    const template = `---\nlayout: post\ndate: ${dateKey}\n---\n\nWrite what happened today.\n\nWhat is one moment you want to remember?\n`;
     const url = new URL(button.dataset.newUrl);
     url.searchParams.set('filename', `${dateKey}-diary.md`);
     url.searchParams.set('value', template);
