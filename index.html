@@ -2,9 +2,35 @@
 layout: default
 ---
 
-<section class="entries" aria-labelledby="timeline-title">
+<section class="entries">
+  <section class="calendar-panel" id="calendar" aria-labelledby="calendar-title">
+    <header class="calendar-header">
+      <p class="section-kicker">Browse the archive</p>
+      <h1 id="calendar-title"><span id="calendar-label" aria-live="polite">{{ site.time | date: "%B %Y" }}</span></h1>
+      <p class="calendar-summary" id="calendar-summary" aria-live="polite">Choose a marked day to read its diary.</p>
+      <div class="calendar-controls" role="group" aria-label="Calendar navigation">
+        <button class="calendar-arrow" id="calendar-previous" type="button" aria-label="Previous month" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 6-6 6 6 6"/></svg>
+        </button>
+        <button class="calendar-today" id="calendar-today" type="button" disabled>Today</button>
+        <button class="calendar-arrow" id="calendar-next" type="button" aria-label="Next month" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="calendar-body">
+      <div class="calendar-weekdays" aria-hidden="true">
+        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+      </div>
+      <div class="calendar-grid" id="calendar-grid"></div>
+      <p class="calendar-legend"><i aria-hidden="true"></i> Filled dates open a diary entry</p>
+      <noscript><p class="calendar-noscript">Enable JavaScript to browse entries with the calendar. Every diary is still available in the timeline below.</p></noscript>
+    </div>
+  </section>
+
   <header class="section-heading">
-    <h1 id="timeline-title">Timeline</h1>
+    <h2 id="timeline-title">Timeline</h2>
     <div class="section-controls">
       <span id="timeline-summary" aria-live="polite">Loading days…</span>
       <a class="write-button" id="write-button" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/new/main/_posts" data-new-url="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/new/main/_posts" target="_blank" rel="noreferrer">
@@ -14,9 +40,9 @@ layout: default
     </div>
   </header>
 
-  <div class="timeline" id="timeline">
+  <section class="timeline" id="timeline" aria-labelledby="timeline-title">
     {% for post in site.posts %}
-    <article class="timeline-day is-written" data-diary-date="{{ post.date | date: '%Y-%m-%d' }}" data-edit-url="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ post.path }}">
+    <article class="timeline-day is-written" id="diary-{{ post.date | date: '%Y-%m-%d' }}" data-diary-date="{{ post.date | date: '%Y-%m-%d' }}" data-diary-url="{{ post.url | relative_url }}" data-edit-url="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ post.path }}">
       <div class="day-marker">
         <time datetime="{{ post.date | date: '%Y-%m-%d' }}">
           <span class="weekday">{{ post.date | date: "%A" }}</span>
@@ -30,11 +56,15 @@ layout: default
           <div class="entry-topline">
             <a class="edit-link" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ post.path }}" target="_blank" rel="noreferrer" aria-label="Edit diary for {{ post.date | date: '%B %-d, %Y' }} on GitHub">Edit on GitHub ↗</a>
           </div>
-          <div class="excerpt">{{ post.excerpt }}</div>
-          <a class="read-link" href="{{ post.url | relative_url }}">Read the diary <span>→</span></a>
+          <div class="entry-content">
+            <div class="entry-copy">
+              <div class="excerpt">{{ post.excerpt }}</div>
+              <a class="read-link" href="{{ post.url | relative_url }}">Read the diary <span>→</span></a>
+            </div>
+          </div>
         </div>
       </div>
     </article>
     {% endfor %}
-  </div>
+  </section>
 </section>
