@@ -12,7 +12,7 @@ A calendar-first, one-diary-per-day journal for GitHub Pages. Every day has one 
 
 ## Write and publish
 
-On the diary, click **Open today's diary**. If today's page exists, GitHub opens that same file for editing; otherwise it creates the canonical `YYYY-MM-DD-diary.md` file from a title-free template. Click **Commit changes** to publish. Unwritten days in the timeline can also be filled later using their GitHub links.
+On the diary, click **Open today's diary**. If today's page exists, GitHub opens that same file for editing; otherwise it creates the canonical `YYYY-MM-DD-diary.md` file from a title-free template. Click **Commit changes** to publish. You can also browse to any previous month in the calendar and choose any day: filled dates open the existing diary for editing, while empty dates create a diary for that date. Unwritten days in the timeline can also be filled later using their GitHub links.
 
 File names must start with a date: `YYYY-MM-DD-short-title.md`. Keep the metadata between the two `---` lines.
 

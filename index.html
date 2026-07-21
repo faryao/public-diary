@@ -7,7 +7,7 @@ layout: default
     <header class="calendar-header">
       <p class="section-kicker">Browse the archive</p>
       <h1 id="calendar-title"><span id="calendar-label" aria-live="polite">{{ site.time | date: "%B %Y" }}</span></h1>
-      <p class="calendar-summary" id="calendar-summary" aria-live="polite">Choose a marked day to read its diary.</p>
+      <p class="calendar-summary" id="calendar-summary" aria-live="polite">Choose any day to write or edit its diary.</p>
       <div class="calendar-controls" role="group" aria-label="Calendar navigation">
         <button class="calendar-arrow" id="calendar-previous" type="button" aria-label="Previous month" disabled>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 6-6 6 6 6"/></svg>
@@ -24,7 +24,7 @@ layout: default
         <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
       </div>
       <div class="calendar-grid" id="calendar-grid"></div>
-      <p class="calendar-legend"><i aria-hidden="true"></i> Filled dates open a diary entry</p>
+      <p class="calendar-legend"><i aria-hidden="true"></i> Filled dates already have a diary</p>
       <noscript><p class="calendar-noscript">Enable JavaScript to browse entries with the calendar. Every diary is still available in the timeline below.</p></noscript>
     </div>
   </section>

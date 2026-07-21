@@ -27,6 +27,7 @@
     const readLink = day.querySelector('.read-link');
     return [day.dataset.diaryDate, {
       url: day.dataset.diaryUrl || (readLink && readLink.href),
+      editUrl: day.dataset.editUrl,
       day
     }];
   }));
@@ -124,9 +125,6 @@
   if (!calendarLabel || !calendarSummary || !calendarGrid || !previousMonth || !nextMonth || !todayMonth) return;
 
   const currentMonthIndex = toMonthIndex(today);
-  const entryMonthIndexes = Array.from(entriesByDate.keys()).map((key) => toMonthIndex(fromDateKey(key)));
-  const minimumMonthIndex = entryMonthIndexes.length > 0 ? Math.min(currentMonthIndex, ...entryMonthIndexes) : currentMonthIndex;
-  const maximumMonthIndex = entryMonthIndexes.length > 0 ? Math.max(currentMonthIndex, ...entryMonthIndexes) : currentMonthIndex;
   const monthFormatter = new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' });
   const fullDateFormatter = new Intl.DateTimeFormat('en', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
   let displayedMonthIndex = currentMonthIndex;
@@ -164,7 +162,7 @@
       const date = new Date(displayedYear, displayedMonth, dayNumber, 12);
       const dateKey = toDateKey(date);
       const entry = entriesByDate.get(dateKey);
-      const dayControl = document.createElement(entry ? 'a' : 'span');
+      const dayControl = document.createElement('a');
       const time = document.createElement('time');
       const fullDate = fullDateFormatter.format(date);
 
@@ -176,13 +174,20 @@
       if (entry && entry.url) {
         entryCount += 1;
         dayControl.classList.add('has-entry');
-        dayControl.href = entry.url;
-        dayControl.setAttribute('aria-label', `Read diary for ${fullDate}`);
+        dayControl.href = entry.editUrl;
+        dayControl.setAttribute('aria-label', `Edit diary for ${fullDate} on GitHub`);
         const mark = document.createElement('i');
         mark.className = 'calendar-entry-mark';
         mark.setAttribute('aria-hidden', 'true');
         dayControl.append(mark);
+      } else {
+        dayControl.classList.add('is-empty');
+        dayControl.href = newDiaryUrl(dateKey);
+        dayControl.setAttribute('aria-label', `Write diary for ${fullDate} on GitHub`);
       }
+
+      dayControl.target = '_blank';
+      dayControl.rel = 'noreferrer';
 
       if (dateKey === todayKey) {
         dayControl.classList.add('is-today');
@@ -197,22 +202,20 @@
     calendarLabel.textContent = monthName;
     calendarGrid.replaceChildren(fragment);
     calendarSummary.textContent = entryCount > 0
-      ? `${entryCount} ${entryCount === 1 ? 'entry' : 'entries'} · choose a filled date to read`
-      : 'No diary entries in this month';
-    previousMonth.disabled = displayedMonthIndex <= minimumMonthIndex;
-    nextMonth.disabled = displayedMonthIndex >= maximumMonthIndex;
+      ? `${entryCount} ${entryCount === 1 ? 'entry' : 'entries'} · choose any date to write or edit`
+      : 'No entries yet · choose a date to write one';
+    previousMonth.disabled = false;
+    nextMonth.disabled = displayedMonthIndex >= currentMonthIndex;
     todayMonth.disabled = displayedMonthIndex === currentMonthIndex;
   }
 
   previousMonth.addEventListener('click', () => {
-    if (displayedMonthIndex > minimumMonthIndex) {
-      displayedMonthIndex -= 1;
-      renderCalendar();
-    }
+    displayedMonthIndex -= 1;
+    renderCalendar();
   });
 
   nextMonth.addEventListener('click', () => {
-    if (displayedMonthIndex < maximumMonthIndex) {
+    if (displayedMonthIndex < currentMonthIndex) {
       displayedMonthIndex += 1;
       renderCalendar();
     }
