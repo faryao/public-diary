@@ -2,6 +2,43 @@
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
+  document.querySelectorAll('.post-content, .excerpt').forEach((container) => {
+    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    let textNode;
+
+    while ((textNode = walker.nextNode())) textNodes.push(textNode);
+
+    textNodes.forEach((node) => {
+      if (node.parentElement.closest('a, code, pre')) return;
+
+      const pattern = /https?:\/\/[^\s<>"']+/gi;
+      const fragment = document.createDocumentFragment();
+      let cursor = 0;
+      let match;
+
+      while ((match = pattern.exec(node.data))) {
+        const trailingPunctuation = match[0].match(/[.,!?;:)\]}，。！？；：]+$/);
+        const value = trailingPunctuation ? match[0].slice(0, -trailingPunctuation[0].length) : match[0];
+        if (!value) continue;
+
+        const link = document.createElement('a');
+        link.href = value;
+        link.textContent = value;
+        link.target = '_blank';
+        link.rel = 'noreferrer';
+
+        fragment.append(node.data.slice(cursor, match.index), link);
+        cursor = match.index + value.length;
+      }
+
+      if (cursor > 0) {
+        fragment.append(node.data.slice(cursor));
+        node.replaceWith(fragment);
+      }
+    });
+  });
+
   const button = document.getElementById('write-button');
   const timeline = document.getElementById('timeline');
   if (!button || !timeline) return;
