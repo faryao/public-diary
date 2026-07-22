@@ -12,7 +12,7 @@
     textNodes.forEach((node) => {
       if (node.parentElement.closest('a, code, pre')) return;
 
-      const pattern = /https?:\/\/[^\s<>"']+/gi;
+      const pattern = /https?:\/\/[A-Z0-9\-._~:/?#[\]@!$&()*+,;=%]+/gi;
       const fragment = document.createDocumentFragment();
       let cursor = 0;
       let match;
