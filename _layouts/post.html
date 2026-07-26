@@ -11,6 +11,32 @@ layout: default
     <time class="sr-only" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%A, %B %-d, %Y" }}</time>
   </header>
   <div class="post-content">{{ content }}</div>
+  <section class="comments" aria-labelledby="comments-title">
+    <header class="comments-header">
+      <p class="section-kicker">Join the conversation</p>
+      <h2 id="comments-title">Comments</h2>
+      <p>Read the conversation below. Sign in with GitHub to comment or reply.</p>
+    </header>
+    <div class="giscus">
+      <script
+        src="https://giscus.app/client.js"
+        data-repo="{{ site.comments.repository }}"
+        data-repo-id="{{ site.comments.repository_id }}"
+        data-category="{{ site.comments.category }}"
+        data-category-id="{{ site.comments.category_id }}"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
+  </section>
   <div class="post-actions">
     <a class="write-button" href="https://github.com/{{ site.github_username }}/{{ site.repository_name }}/edit/main/{{ page.path }}" target="_blank" rel="noreferrer">Edit this diary on GitHub <span>↗</span></a>
   </div>

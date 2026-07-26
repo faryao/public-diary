@@ -95,8 +95,8 @@ nav a:hover { color: var(--tiffany-deep); }
 .post { max-width: 780px; margin: 0 auto; padding: 72px 0 120px; }
 .back-link { color: var(--muted); font-size: 12px; text-decoration: none; }
 .back-link:hover { color: var(--tiffany-deep); }
-.post header { position: relative; overflow: hidden; margin-top: 55px; padding: 58px 64px 52px; background: linear-gradient(135deg, rgba(223,246,243,.82), rgba(255,255,255,.62)); border: 1px solid rgba(7,143,133,.16); border-radius: 4px 46px 4px 4px; box-shadow: var(--shadow); }
-.post header::after { content: ""; position: absolute; top: -60px; right: -55px; width: 190px; height: 190px; border: 1px solid rgba(7,143,133,.13); border-radius: 50%; box-shadow: 0 0 0 38px rgba(129,216,208,.06); }
+.post > header { position: relative; overflow: hidden; margin-top: 55px; padding: 58px 64px 52px; background: linear-gradient(135deg, rgba(223,246,243,.82), rgba(255,255,255,.62)); border: 1px solid rgba(7,143,133,.16); border-radius: 4px 46px 4px 4px; box-shadow: var(--shadow); }
+.post > header::after { content: ""; position: absolute; top: -60px; right: -55px; width: 190px; height: 190px; border: 1px solid rgba(7,143,133,.13); border-radius: 50%; box-shadow: 0 0 0 38px rgba(129,216,208,.06); }
 .post-date { position: relative; z-index: 1; display: flex; align-items: center; gap: 30px; }
 .post-date strong { color: var(--tiffany-deep); font: 400 clamp(88px, 14vw, 138px)/.72 "Newsreader", serif; letter-spacing: -.07em; }
 .post-date span { padding-left: 28px; color: var(--ink); border-left: 1px solid rgba(7,143,133,.25); font: italic 400 21px/1.45 "Newsreader", serif; }
@@ -112,6 +112,13 @@ nav a:hover { color: var(--tiffany-deep); }
 }
 .post-content h2 { margin-top: 1.8em; font-weight: 500; }
 .post-content blockquote { margin: 2em 0; padding-left: 24px; color: var(--tiffany-dark); border-left: 2px solid var(--tiffany); font-style: italic; }
+.comments { margin: 0 36px; padding: 42px 0 34px; border-top: 1px solid var(--line); }
+.comments-header { margin-bottom: 28px; }
+.comments-header .section-kicker { margin-bottom: 8px; }
+.comments-header h2 { margin: 0; font: 400 36px/1.1 "Newsreader", serif; letter-spacing: -.02em; }
+.comments-header > p:last-child { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.giscus { min-height: 160px; }
+.giscus-frame { width: 100%; }
 .post-actions { padding: 20px 36px 0; }
 footer { display: flex; justify-content: space-between; padding: 32px 0; color: var(--muted); border-top: 1px solid var(--line); font: 400 12px "Newsreader", serif; }
 .sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
@@ -167,11 +174,13 @@ footer { display: flex; justify-content: space-between; padding: 32px 0; color: 
   .excerpt { max-height: 6.2em; font-size: 17px; line-height: 1.55; }
   .entry-thumbnail { border-radius: 9px; }
   .post { padding: 48px 8px 90px; }
-  .post header { margin-top: 40px; padding: 42px 26px 38px; border-radius: 4px 32px 4px 4px; }
+  .post > header { margin-top: 40px; padding: 42px 26px 38px; border-radius: 4px 32px 4px 4px; }
   .post-date { gap: 18px; }
   .post-date strong { font-size: 88px; }
   .post-date span { padding-left: 18px; font-size: 17px; }
   .post-content { padding: 48px 10px 38px; }
+  .comments { margin-inline: 10px; padding-top: 34px; }
+  .comments-header h2 { font-size: 32px; }
   .post-actions { padding-inline: 10px; }
 }
 

@@ -16,6 +16,14 @@ On the diary, click **Open today's diary**. If today's page exists, GitHub opens
 
 File names must start with a date: `YYYY-MM-DD-short-title.md`. Keep the metadata between the two `---` lines.
 
+## Comments
+
+Every diary entry includes a Giscus comment thread backed by this repository's
+GitHub Discussions. Comments are publicly readable, and readers must sign in
+with GitHub to comment or reply. GitHub Discussions must remain enabled and the
+[Giscus GitHub App](https://github.com/apps/giscus) must be authorized for this
+repository.
+
 ## Preview locally (optional)
 
 If Ruby and Bundler are installed:

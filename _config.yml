@@ -10,6 +10,12 @@ github_username: faryao
 repository_name: public-diary
 baseurl: /public-diary
 
+comments:
+  repository: faryao/public-diary
+  repository_id: R_kgDOTb8gyw
+  category: Announcements
+  category_id: DIC_kwDOTb8gy84DCBbb
+
 exclude:
   - README.md
   - LICENSE
