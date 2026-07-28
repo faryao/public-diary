@@ -64,7 +64,6 @@
     const readLink = day.querySelector('.read-link');
     return [day.dataset.diaryDate, {
       url: day.dataset.diaryUrl || (readLink && readLink.href),
-      editUrl: day.dataset.editUrl,
       day
     }];
   }));
@@ -177,8 +176,8 @@
       if (entry && entry.url) {
         entryCount += 1;
         dayControl.classList.add('has-entry');
-        dayControl.href = entry.editUrl;
-        dayControl.setAttribute('aria-label', `Edit diary for ${fullDate} on GitHub`);
+        dayControl.href = entry.url;
+        dayControl.setAttribute('aria-label', `Open diary for ${fullDate} in a new tab`);
         const mark = document.createElement('i');
         mark.className = 'calendar-entry-mark';
         mark.setAttribute('aria-hidden', 'true');
@@ -205,7 +204,7 @@
     calendarLabel.textContent = monthName;
     calendarGrid.replaceChildren(fragment);
     calendarSummary.textContent = entryCount > 0
-      ? `${entryCount} ${entryCount === 1 ? 'entry' : 'entries'} · choose any date to write or edit`
+      ? `${entryCount} ${entryCount === 1 ? 'entry' : 'entries'} · choose a filled date to read or an empty date to write`
       : 'No entries yet · choose a date to write one';
     previousMonth.disabled = false;
     nextMonth.disabled = displayedMonthIndex >= currentMonthIndex;
