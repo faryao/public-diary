@@ -1,9 +1,13 @@
-# Public Diary
+# Diary
 
 This context describes the dated journal and how people move between reading
 published entries and writing unpublished ones.
 
 ## Language
+
+**Diary**:
+The public journal and its website.
+_Avoid_: Yuan’s Diary, Public Diary
 
 **Diary entry**:
 A journal record for one calendar date that is published at its own web page.

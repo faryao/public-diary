@@ -1,4 +1,4 @@
-# Yuan’s Diary
+# Diary
 
 A calendar-first, one-diary-per-day journal for GitHub Pages. Written diaries appear on a Tiffany-green vertical timeline, while the calendar lets you choose any date. Diaries are identified by date and do not use titles.
 
