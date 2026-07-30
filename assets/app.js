@@ -2,7 +2,13 @@
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
-  document.querySelectorAll('.post-content, .excerpt').forEach((container) => {
+  const readingContainers = document.querySelectorAll('.post-content, .excerpt');
+  const cjkBoundary = /[\u3000-\u303f\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/;
+  const ignoredLinkifyTags = 'a, code, pre, script, style, textarea, iframe, input';
+
+  function linkifyBareUrls(container) {
+    if (!window.linkify || typeof window.linkify.find !== 'function') return;
+
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
     const textNodes = [];
     let textNode;
@@ -10,33 +16,42 @@
     while ((textNode = walker.nextNode())) textNodes.push(textNode);
 
     textNodes.forEach((node) => {
-      if (node.parentElement.closest('a, code, pre')) return;
+      if (node.parentElement.closest(ignoredLinkifyTags)) return;
 
-      const pattern = /https?:\/\/[A-Z0-9\-._~:/?#[\]@!$&()*+,;=%]+/gi;
+      const matches = window.linkify.find(node.data).filter((match) => (
+        match.type === 'url' && /^https?:\/\//i.test(match.value)
+      ));
+      if (matches.length === 0) return;
+
       const fragment = document.createDocumentFragment();
       let cursor = 0;
-      let match;
 
-      while ((match = pattern.exec(node.data))) {
-        const trailingPunctuation = match[0].match(/[.,!?;:)\]}，。！？；：]+$/);
-        const value = trailingPunctuation ? match[0].slice(0, -trailingPunctuation[0].length) : match[0];
-        if (!value) continue;
+      matches.forEach((match) => {
+        const boundaryIndex = match.value.search(cjkBoundary);
+        const value = boundaryIndex < 0 ? match.value : match.value.slice(0, boundaryIndex);
+        if (!value) return;
 
         const link = document.createElement('a');
         link.href = value;
         link.textContent = value;
         link.target = '_blank';
-        link.rel = 'noreferrer';
+        link.rel = 'noopener noreferrer';
 
-        fragment.append(node.data.slice(cursor, match.index), link);
-        cursor = match.index + value.length;
-      }
+        fragment.append(node.data.slice(cursor, match.start), link);
+        cursor = match.start + value.length;
+      });
 
-      if (cursor > 0) {
-        fragment.append(node.data.slice(cursor));
-        node.replaceWith(fragment);
-      }
+      fragment.append(node.data.slice(cursor));
+      node.replaceWith(fragment);
     });
+  }
+
+  readingContainers.forEach((container) => {
+    linkifyBareUrls(container);
+
+    if (window.pangu && typeof window.pangu.spacingNodeSync === 'function') {
+      window.pangu.spacingNodeSync(container);
+    }
   });
 
   const button = document.getElementById('write-button');
